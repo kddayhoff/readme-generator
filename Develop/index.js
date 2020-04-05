@@ -53,27 +53,18 @@ function questions() {
       },
       {
         type: "input",
-        name: "projectTitle",
-        message: "What is the title of your project?"
-      },
-      {
-        type: "input",
         name: "username",
         message: "Enter your GitHub username"
       },
 
-    ])
-    .then(function(res) {
-      console.log("It worked!")
-    })
-    
-};
-questions();
-// function writeToFile(fileName, data) {
-// }
+    ]
+    )}
+    questions();
+function writeToFile(fileName, data) {
+}
 
-// function init() {
+function init() {
 
-// }
+}
 
-// init();
+init();

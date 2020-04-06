@@ -9,16 +9,20 @@ axios
 {
   headers: {"Authorization": `${process.env.GH_TOKEN}`}
 })
-  .then(response => console.log(response.data))
-  .catch(error => console.log(error))
+  .then(function(res) {
+    console.log(res)
+     
+    })
+     
+    .catch(error => console.log(error))
+ 
+}
+}
 
-
-  }
-};
-
-api.getUser("kddayhoff");
+api.getUser();
 
 module.exports = api;
+
 
 //package dotenv -- in dot env folder name pairs GH_TOKEN example
 //installation directions need to say clone it, npm install, create .env file, create it in this way in this file

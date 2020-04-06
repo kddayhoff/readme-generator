@@ -2,6 +2,8 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
+const axios = require('axios');
+// const api = require("./api.js");
 
 function questions() {
     return inquirer.prompt([
@@ -55,16 +57,42 @@ function questions() {
         type: "input",
         name: "username",
         message: "Enter your GitHub username"
-      },
+      }]
+    )
+    
+    function writeToFile(fileName, data) {
+        const answers = questions.filter(function(info) {
+            return answers.input;
+        })
+        }
+     }
+     writeToFile();
+        
+   questions();
+    //  fs.appendFile("log.txt", )
 
-    ]
-    )}
-    questions();
-function writeToFile(fileName, data) {
-}
+    // .then(function({ username }) {
+    //     const queryURL = (`https://api.github.com/users/${username}`, 
+    //     {
+    //       headers: {"Authorization": `${process.env.GH_TOKEN}`}
+    //     })
+    //     axios
+    //     .get(queryURL)
+    //     .then(function(res) {
+    //         console.log(res.data.map());
+           
+    //         })
+    //          .catch(function(error) {
+    //              console.log("Error: ", error)
+    //          })
+    //         })  
+       
+    
 
-function init() {
 
-}
 
-init();
+// function init() {
+
+// }
+
+// init();

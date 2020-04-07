@@ -71,14 +71,19 @@ function questions() {
       },
       {
         type: "input",
+        name: "username",
         message: "What is your GitHub username",
-        name: "username"
-      }]);
-    }
-      questions();
+        
+      }
+    ])
+    .then(function(answers) {
+        let username = answers.username;
+    getUser(username, answers);
+    });
       
-    const api = {
-        getUser(username) {
+    
+   
+        function getUser(username) {
       axios
       .get(`https://api.github.com/users/${username}`, 
       {
@@ -87,23 +92,19 @@ function questions() {
         .then(function(res) {
           console.log(res.data)
            
-          })
-
-           
+          }) 
           .catch(error => console.log(error))
+      }}
       
-      }
-      
-    }
-    api.getUser(username);
-
+      questions(); 
+       
       // Type: (input === "GET")
       // Message asks th qustion
       // name is the response (user input)
         // take the reaponse in our case "useranem" throw it into our API call
       
         // passing in the "username" (answer from last question) and running API
-     
+      
     
     
     

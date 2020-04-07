@@ -10,7 +10,7 @@ axios
   headers: {"Authorization": `${process.env.GH_TOKEN}`}
 })
   .then(function(res) {
-    console.log(res)
+    console.log(res.data)
      
     })
      
@@ -19,7 +19,7 @@ axios
 }
 }
 
-api.getUser();
+api.getUser("kddayhoff");
 
 module.exports = api;
 

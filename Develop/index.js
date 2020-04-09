@@ -4,7 +4,7 @@ const fs = require("fs");
 const util = require("util");
 const axios = require('axios');
 require('dotenv').config();
-const writeReadme = util.promisify(fs.writeFile);
+const writeFileAsync = util.promisify(fs.writeFile);
 
 //questions the user will be asked to complete information in ReadME
 function questions() {
@@ -103,12 +103,12 @@ function questions() {
         return `
      ###hello
      ![badges]()  
-     ![avatar](https://avatars1.githubusercontent.com/u/${ output.userPicture }?v=4   
+     ![avatar](https://avatars1.githubusercontent.com/u/${ input.userPicture }?v=4   
     ### 
-    Project Title: ${ output.title }
+    Project Title: ${ input.title }
     ___
     ####
-    Project Description: ${ output.description }
+    Project Description: ${ input.description }
     `
     }
 
@@ -119,7 +119,7 @@ function questions() {
       
           const readMe = generateReadme(input);
       
-          await writeReadme("README.md", readMe );
+          await writeFileAsync("README.md", readMe );
       
           console.log("Did you make a readme?");
         } catch(err) {

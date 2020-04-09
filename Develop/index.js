@@ -115,13 +115,12 @@ function questions() {
     async function init() {
         console.log("hi")
         try {
-          const input = await questions();
+          const input = questions();
       
           const readMe = generateReadme(input);
       
           await writeFileAsync("README.md", readMe );
       
-          console.log("Did you make a readme?");
         } catch(err) {
           console.log(err);
         }

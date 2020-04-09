@@ -4,85 +4,81 @@ const fs = require("fs");
 const util = require("util");
 const axios = require('axios');
 require('dotenv').config();
-// const api = require("./api.js");
+const writeFileAsync = util.promisify(fs.writeFile);
 
+//questions the user will be asked to complete information in ReadME
 function questions() {
     return inquirer.prompt([
       {
           type: "input",
-          name: "Project Title",
+          name: "title",
           message: "What is the title of the project?"
       },
       {
         type: "input",
-        name: "Project Description",
+        name: "description",
         message: "What is the description of the project?"
       },
-    //   {
-    //     type: "list",
-    //     name: "Table of Contents",
-    //     message: "List the table of Contents"
-    //   },
       {
         type: "input",
-        name: "Installation",
+        name: "installation",
         message: "How does someone install the project?"
       },
       {
         type: "input",
-        name: "Usage",
+        name: "usage",
         message: "How does a user use the project?"
       },
       {
         type: "input",
-        name: "Authors",
+        name: "authors",
         message: "Who contributed to the project and are there any acknowledgments?"
       },
 
-    //   {
-    //     type: "checkbox",
-    //     name: "License",
-    //     message: "What is the license for the project?"
-    //   },
       {
         type: "input",
-        name: "Contributors",
+        name: "license",
+        message: "What is the license for the project?"
+      },
+      {
+        type: "input",
+        name: "contributors",
         message: "Who contributed to this project?"
       },
       {
         type: "input",
-        name: "Contributing",
+        name: "contributing",
         message: "Are you open to contributions and what are the requirements for accepting them?"
       },
       {
         type: "input",
-        name: "Tests",
+        name: "tests",
         message: "What are the instructions for running the tests for this project?"
       },
       {
         type: "input",
-        name: "Name",
+        name: "name",
         message: "What is your full name?"
       },
       {
         type: "input",
-        name: "Contact or Questions",
-        message: "What is your LinkedIn profile?"
+        name: "contact",
+        message: "What is your LinkedIn profile name?"
       },
       {
         type: "input",
         name: "username",
-        message: "What is your GitHub username",
-        
+        message: "What is your GitHub username",  
       }
     ])
+
+    //this takes the user's github name and pulls up their github user provile
     .then(function(answers) {
         let username = answers.username;
     getUser(username, answers);
     });
       
-    
-   
+    //this function calls the github API
         function getUser(username) {
       axios
       .get(`https://api.github.com/users/${username}`, 
@@ -91,63 +87,47 @@ function questions() {
       })
         .then(function(res) {
           console.log(res.data)
-           
+          console.log("==========");
+          var userEmail = res.data.email;
+          console.log(userEmail);
+          console.log("===========");
+          var userPicture = res.data.avatar_url;
+          console.log(userPicture);
+          console.log("============");
+           return userEmail;
           }) 
           .catch(error => console.log(error))
       }}
-      
-      questions(); 
-       
-      // Type: (input === "GET")
-      // Message asks th qustion
-      // name is the response (user input)
-        // take the reaponse in our case "useranem" throw it into our API call
-      
-        // passing in the "username" (answer from last question) and running API
-      
     
+    function generateReadme (output) {
+        return `
+     ![badges]()  
+     ![avatar](https://avatars1.githubusercontent.com/u/${ output.userPicture }?v=4   
+    ### 
+    Project Title: ${ output.title }
+    ___
+    ####
+    Project Description: ${ output.description }
     
-    
-    
-    
-    
-    // function writeToFile(fileName, data) {
-    //     const answers = questions.filter(function(info) {
-    //         return answers.input;
-    //     })
-    //     }
-    //  }
+    `
+    }
 
-    //  writeToFile();
-        
-   
-    //  fs.appendFile("log.txt", )
-    // axios
-    // .then(function({ username }) {
+    async function init() {
+        console.log("hi")
+        try {
+          const output = await questions();
+      
+          const readMe = generateReadme(output);
+      
+          await writeFileAsync("README.md", readMe );
+      
+          console.log("Did you make a readme?");
+        } catch(err) {
+          console.log(err);
+        }
+      }
+      
+      init();
+      
      
-    //     const queryURL = (`https://api.github.com/users/${username}`, 
-    //     {
-    //       headers: {"Authorization": `${process.env.GH_TOKEN}`}
-    //     })
       
-    //     .get(queryURL)
-    //     .then(function(res) {
-    //         console.log(res.data.map());
-           
-    //         })
-    //          .catch(function(error) {
-    //              console.log("Error: ", error)
-    //          })
-    //         })  
-     
-    //     }
- 
- 
-//  username("kddayhoff"); 
-
-
-// function init() {
-
-// }
-
-// init();

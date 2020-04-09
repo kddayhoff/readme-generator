@@ -1,3 +1,10 @@
+// Type: (input === "GET")
+      // Message asks th qustion
+      // name is the response (user input)
+        // take the reaponse in our case "useranem" throw it into our API call
+      
+        // passing in the "username" (answer from last question) and running API
+
 //OAuth2 token for github API; avatar URl is profile pic -- go to axios user instructions on npmjs to put in header for api token generated from git hub
 
 const axios = require('axios');

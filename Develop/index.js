@@ -4,11 +4,11 @@ const fs = require("fs");
 const util = require("util");
 const axios = require('axios');
 require('dotenv').config();
-const writeFileAsync = util.promisify(fs.writeFile);
+
 
 //questions the user will be asked to complete information in ReadME
 function questions() {
-    return inquirer.prompt([
+     inquirer.prompt([
       {
           type: "input",
           name: "title",
@@ -42,11 +42,6 @@ function questions() {
       },
       {
         type: "input",
-        name: "contributors",
-        message: "Who contributed to this project?"
-      },
-      {
-        type: "input",
         name: "contributing",
         message: "Are you open to contributions and what are the requirements for accepting them?"
       },
@@ -62,7 +57,7 @@ function questions() {
       },
       {
         type: "input",
-        name: "contact",
+        name: "linkedin",
         message: "What is your LinkedIn profile name?"
       },
       {
@@ -79,54 +74,65 @@ function questions() {
     });
       
     //this function calls the github API
-        function getUser(username) {
+        function getUser(username, answers) {
       axios
       .get(`https://api.github.com/users/${username}`, 
       {
         headers: {"Authorization": `${process.env.GH_TOKEN}`}
       })
         .then(function(res) {
-          console.log(res.data)
-          console.log("==========");
-          var userEmail = res.data.email;
-          console.log(userEmail);
-          console.log("===========");
-          var userPicture = res.data.avatar_url;
-          console.log(userPicture);
-          console.log("============");
-           return userEmail;
+            const data = res.data
+          generateReadme(data, answers);
           }) 
           .catch(error => console.log(error))
       }}
     
-    function generateReadme (input) {
-        return `
-     ###hello
-     ![badges]()  
-     ![avatar](https://avatars1.githubusercontent.com/u/${ input.userPicture }?v=4   
-    ### 
-    Project Title: ${ input.title }
-    ___
-    ####
-    Project Description: ${ input.description }
+    function generateReadme (data, answers) {
+        console.log(data, answers);
+        const markdown = `
+    ![badges]()  
+     
+    ### Project Title: ${ answers.title }
+    ____
+    #### Table of Contents:
+    ##### 1. Project Description
+    ##### 2. Installation
+    ##### 3. Usage
+    ##### 5. Authors
+    ##### 6. License
+    ##### 7. Tests
+    ##### 8. Contact Information
+    _____
+    #### Project Description: ${ answers.description }
+    ____
+    #### Installation: ${ answers.installation}
+    ____
+    #### Usage: ${answers.usage}
+    ____ 
+    #### Authors: ${answers.authors}
+    ____
+    #### License: ${answers.license}
+    ____
+    #### Tests: ${answers.tests}
+    ____
+    #### Name: ${answers.name}
+    #### Contact:
+         *LinkedIn: https://www.linkedin.com/in/${answers.linkedin}
+         *Email: ${data.email}
+         *Github: ${answers.username}
+
+    ![avatar](https://avatars1.githubusercontent.com/u/${ data.avatar_URL }?v=4)   
+    
     `
+    fs.writeFile("readme.md", markdown, function(err) {
+        if (err) {
+        return console.log(err);
+        }
+        console.log("Success!");
+        });
     }
 
-    async function init() {
-        console.log("hi")
-        try {
-          const input = questions();
-      
-          const readMe = generateReadme(input);
-      
-          await writeFileAsync("README.md", readMe );
-      
-        } catch(err) {
-          console.log(err);
-        }
-      }
-      
-      init();
+   questions();
       
      
       

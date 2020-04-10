@@ -112,7 +112,7 @@ function questions() {
     ____ 
     #### Authors: ${answers.authors}
     ____
-    #### License: ${answers.license} [![badge](https://img.shields.io/static/v1?label=License&message=MIT&color=)]
+    #### License: ${answers.license} ![badge](https://img.shields.io/static/v1?label=License&message=MIT&color=)
     ____
     #### Tests: ${answers.tests}
     ____
@@ -123,7 +123,7 @@ function questions() {
          *Github: ${answers.username}
 
     
-       [![avatar](${data.avatar_url})]
+       ![avatar](${data.avatar_url})
     
     `
     fs.writeFile("README.md", markdown, function(err) {

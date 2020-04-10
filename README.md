@@ -1,6 +1,6 @@
 
 
-### readme-generator
+# readme-generator
 This application is created to help a developer create a quick, simple, pre-formatted README.md from the command line using Node.js
 
 ## Technology

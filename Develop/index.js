@@ -91,7 +91,7 @@ function questions() {
     function generateReadme (data, answers) {
         
         const markdown = `
-    ![badges]()  
+    ![badges](https://img.shields.io/static/v1?label=License&message=MIT&color=)  
      
     ### Project Title: ${ answers.title }
     ____

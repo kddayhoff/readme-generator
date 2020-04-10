@@ -1,7 +1,6 @@
 
 const inquirer = require("inquirer");
 const fs = require("fs");
-const util = require("util");
 const axios = require('axios');
 require('dotenv').config();
 
@@ -78,17 +77,19 @@ function questions() {
       axios
       .get(`https://api.github.com/users/${username}`, 
       {
-        headers: {"Authorization": `${process.env.GH_TOKEN}`}
+        headers: {"Authorization": `token ${process.env.GH_TOKEN}`}
       })
         .then(function(res) {
             const data = res.data
+            // console.log(data);
+            // console.log(data.email);
           generateReadme(data, answers);
           }) 
           .catch(error => console.log(error))
       }}
     
     function generateReadme (data, answers) {
-        console.log(data, answers);
+        
         const markdown = `
     ![badges]()  
      
@@ -121,10 +122,11 @@ function questions() {
          *Email: ${data.email}
          *Github: ${answers.username}
 
-    ![avatar](https://avatars1.githubusercontent.com/u/${ data.avatar_URL }?v=4)   
+    
+       [![avatar](${data.avatar_url})]
     
     `
-    fs.writeFile("readme.md", markdown, function(err) {
+    fs.writeFile("README.md", markdown, function(err) {
         if (err) {
         return console.log(err);
         }

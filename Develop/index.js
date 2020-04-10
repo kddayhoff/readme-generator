@@ -112,7 +112,7 @@ function questions() {
     ____ 
     #### Authors: ${answers.authors}
     ____
-    #### License: ${answers.license}
+    #### License: ${answers.license} [![badge](https://img.shields.io/static/v1?label=License&message=MIT&color=)]
     ____
     #### Tests: ${answers.tests}
     ____

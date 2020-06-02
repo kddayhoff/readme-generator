@@ -15,7 +15,8 @@ To install this code, clone the files from the repository https://github.com/kdd
 ​
 CD into the "Develop" folder. On the terminal/gitbash, enter node index.js. From there the user will be prompted enter the answers to the the questions which will then be inserted into a pre-formatted README.md file. See below for a demonstration:
 
-<img src=/readme-demonstration.gif>
+<img src="readme-generator.png">
+<img src="readme-generator2.png">
 
 ## Collaborators
 ​Every person in the VU Bootcamp Spring 2020. Without them none of this would be possible because I'd have quit by now.

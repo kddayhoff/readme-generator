@@ -1,7 +1,6 @@
 
    
-     
-  ### Project Title: Full Stack Developer
+  ### Project Title: Code quiz
   ____
   #### Table of Contents:
   ##### 1. Project Description
@@ -12,24 +11,25 @@
   ##### 7. Tests
   ##### 8. Contact Information
   _____
-  #### Project Description: Learning how to code
+  #### Project Description: quizzing
   ____
-  #### Installation: Lots of learning
+  #### Installation: github
   ____
-  #### Usage: VSCode
+  #### Usage: yes
   ____ 
-  #### Authors: Dayhoff Developments
+  #### Authors: everyone
   ____
-  #### License: MIT ![badge](https://img.shields.io/static/v1?label=License&message=MIT&color=)
+  #### License: mit ![badge](https://img.shields.io/static/v1?label=License&message=MIT&color=)
   ____
-  #### Tests: Clone repository
+  #### Tests: download go
   ____
-  #### Name: Karla Dayhoff
+  #### Name: karla dayhoff
   #### Contact:
-    *LinkedIn: https://www.linkedin.com/in/kddayhoff
-    *Email: kddayhoff@gmail.com
-    *Github: kddayhoff
+       *LinkedIn: https://www.linkedin.com/in/kddayhoff
+       *Email: kddayhoff@gmail.com
+       *Github: kddayhoff
 
-
-  ![avatar](https://avatars1.githubusercontent.com/u/59662740?v=4)
-
+  
+     ![avatar](https://avatars1.githubusercontent.com/u/59662740?v=4)
+  
+  
